@@ -1,0 +1,35 @@
+#btn_changeText {
+  padding: 10px;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px black solid;
+  width: 10%;
+  padding: 30px;
+  background-color: rgb(46, 45, 45);
+}
+.calculator .display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  background-color: #c2c2c2;
+  margin-bottom: 20px;
+}
+.calculator .keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+.calculator .keyboard .cal_btn {
+  padding: 10px;
+}
+
+.hide_pass {
+  margin-top: 20px;
+}/*# sourceMappingURL=main.css.map */
