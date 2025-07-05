@@ -10,8 +10,7 @@ body {
      -moz-user-select: none;
           user-select: none;
 }
-
-.grid {
+body .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -19,7 +18,7 @@ body {
   height: 400px;
   border: 1px solid black;
 }
-.grid .cell {
+body .grid .cell {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,13 +26,11 @@ body {
   transition: 0.2s;
   border: 1px solid black;
 }
-
-.status {
+body .status {
   margin-top: 20px;
   text-align: center;
 }
-
-#restart {
+body #restart {
   margin-top: 20px;
   display: flex;
   font-size: 20px;
@@ -41,8 +38,7 @@ body {
   border-radius: 5px;
   padding: 4px;
 }
-
-.res {
+body .res {
   display: flex;
   gap: 10px;
 }/*# sourceMappingURL=main.css.map */
