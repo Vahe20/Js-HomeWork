@@ -1,0 +1,34 @@
+.wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+
+    .board {
+        border: 1px solid #000;
+        box-shadow: 0 0 7px #000;
+        width: 600px;
+        height: 600px;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+
+        &_cell {
+            border: 1px solid #000;
+            background-color: rgb(243, 200, 106);
+        }
+
+        .black_cell {
+            background-color: rgb(87, 60, 34);
+        }
+    }
+
+    #available_cell {
+        background-color: green;
+    }
+
+    #attack_cell {
+        background-color: red;
+    }
+}
