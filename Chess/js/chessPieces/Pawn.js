@@ -8,7 +8,7 @@ export class Pawn extends ChessPiece {
     getAvailableMoves(chessBoard) {
         const moves = [];
         const direction = this.color === "white" ? 1 : -1;
-        const startRow = this.color === "white" ? 2 : 7;
+        const startRow = this.color === "white" ? 1 : 6;
 
         if (chessBoard.board[this.position[0] + direction]) {
             if (chessBoard.board[this.position[0] + direction][this.position[1]] === undefined) {
@@ -26,7 +26,7 @@ export class Pawn extends ChessPiece {
         const attack = [];
 
         if (this.color === "white") {
-            if (this.position[1] + 1 <= 8 && chessBoard.board[this.position[0] + 1] && chessBoard.board[this.position[0] + 1][this.position[1] + 1] && chessBoard.board[this.position[0] + 1][this.position[1] + 1].color === "black") {
+            if (this.position[1] + 1 < 8 && chessBoard.board[this.position[0] + 1] && chessBoard.board[this.position[0] + 1][this.position[1] + 1] && chessBoard.board[this.position[0] + 1][this.position[1] + 1].color === "black") {
                 attack.push([ this.position[0] + 1, this.position[1] + 1 ]);
             }
 
@@ -36,7 +36,7 @@ export class Pawn extends ChessPiece {
         }
 
         if (this.color === "black") {
-            if (this.position[1] + 1 <= 8 && chessBoard.board[this.position[0] - 1] && chessBoard.board[this.position[0] - 1][this.position[1] + 1] && chessBoard.board[this.position[0] - 1][this.position[1] + 1].color === "white") {
+            if (this.position[1] + 1 < 8 && chessBoard.board[this.position[0] - 1] && chessBoard.board[this.position[0] - 1][this.position[1] + 1] && chessBoard.board[this.position[0] - 1][this.position[1] + 1].color === "white") {
                 attack.push([ this.position[0] - 1, this.position[1] + 1 ]);
             }
 
