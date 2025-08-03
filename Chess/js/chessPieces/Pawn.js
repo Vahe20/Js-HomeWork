@@ -7,6 +7,7 @@ export class Pawn extends ChessPiece {
 
     getAvailableMoves(chessBoard) {
         const moves = [];
+        
         const direction = this.color === "white" ? 1 : -1;
         const startRow = this.color === "white" ? 1 : 6;
 

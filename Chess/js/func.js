@@ -7,6 +7,13 @@ import { King } from "./chessPieces/King.js";
 import { Render } from './render.js';
 
 export function start(chessBoard) {
+
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            chessBoard.board[i][j] = undefined;
+        }
+    }
+
     const setupRow = (row, color, imgPrefix) => {
         chessBoard.board[row][0] = new Rook(color, 'Rook', [row, 0], `images/${imgPrefix}_rook.png`);
         chessBoard.board[row][1] = new Knight(color, 'Knight', [row, 1], `images/${imgPrefix}_knight.png`);
@@ -27,6 +34,22 @@ export function start(chessBoard) {
     }
 
     Render.renderBoard(chessBoard);
+}
+
+
+export function  generateHtmlCells() {
+    for (let i = 7; i >= 0; --i) {
+        for (let j = 7; j >= 0; --j) {
+            const cell = document.createElement('div');
+            cell.classList.add('board_cell');
+            cell.classList.add(`cell-${i}-${j}`);
+            document.querySelector('.board').appendChild(cell);
+
+            if ((i + j) % 2 === 0) {
+                cell.classList.add('black_cell');
+            }
+        }
+    }
 }
 
 export function getKing(chessBoard, color) {
@@ -52,12 +75,69 @@ export function isCheck(chessBoard, color) {
                 if (attack_pos.some((value) => {
                     return value[0] === kingPos[0] && value[1] === kingPos[1];
                 })) {
-                    king.check = true;
+                    king.check = false;
+                    document.querySelector(`.cell-${kingPos[0]}-${kingPos[1]}`).id = "check_cell";
                     return true;
                 }
             }
         }
     }
 
+    document.querySelector(`.cell-${kingPos[0]}-${kingPos[1]}`).id = "";
     return false;
+}
+
+export function isMath(chessBoard, color) {
+    if (!isCheck(chessBoard, color)) {
+        return;
+    }
+
+    let math = true;
+
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            const piece = chessBoard.board[i][j];
+            if (piece && piece.color === color) {
+                const moves_pos = Render.availableMoves(chessBoard, i, j);
+                const attack_pos = Render.availableAttack(chessBoard, i, j);
+
+                if (moves_pos.length > 0 || attack_pos.length > 0) {
+                    math = false;
+                    return;
+                }
+            }
+        }
+    }
+
+    if (math) {
+        alert('Checkmate! ' + color + ' player wins!');
+        location.reload();
+        return;
+    }
+}
+
+export function virtualBoard(chessBoard, color, row, col, newRow, newCol) {
+    const virtualBoard = {
+        board: Array.from(Array(8), () => new Array(8))
+    }
+
+    for (let i = 0; i < 8; i++) {
+        for (let j = 0; j < 8; j++) {
+            virtualBoard.board[i][j] = chessBoard.board[i][j];
+            if (virtualBoard.board[i][j]) {
+                virtualBoard.board[i][j].position = [i, j];
+            }
+        }
+    }
+
+    const piece = virtualBoard.board[row][col];
+    virtualBoard.board[row][col] = undefined;
+    virtualBoard.board[newRow][newCol] = piece;
+    piece.position = [newRow, newCol];
+
+    const check = !isCheck(virtualBoard, color);
+
+    piece.position = [row, col];
+
+    return check;
 }

@@ -2,8 +2,7 @@ import { Render } from './render.js';
 import * as func from './func.js';
 
 
-
-export function boardEvents({ chessBoard, currentPlayer}) {
+export function boardEvents(chessBoard, currentPlayer) {
     let selectedPiece = null;
     let selectedPiecePos = null;
 
@@ -15,10 +14,6 @@ export function boardEvents({ chessBoard, currentPlayer}) {
         if (!match) return;
     
         const [, row, col] = match.split('-').map(Number);
-
-        // if (func.getKing(chessBoard, currentPlayer).check === true) {
-        //     return;
-        // }
     
         if (document.querySelector(`.${match}`).id === "available_cell" || document.querySelector(`.${match}`).id === "attack_cell") {
             Render.clearSelectedCell();
@@ -33,9 +28,10 @@ export function boardEvents({ chessBoard, currentPlayer}) {
             selectedPiecePos = null;
     
             currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
-
-            func.isCheck(chessBoard, currentPlayer)
-
+    
+            func.isCheck(chessBoard, currentPlayer);
+            func.isMath(chessBoard, currentPlayer);
+    
             return;
         }
     
@@ -44,6 +40,9 @@ export function boardEvents({ chessBoard, currentPlayer}) {
     
             selectedPiece = null;
             selectedPiecePos = null;
+    
+            func.isCheck(chessBoard, currentPlayer);
+            func.isMath(chessBoard, currentPlayer);
     
             return;
         }
@@ -59,6 +58,9 @@ export function boardEvents({ chessBoard, currentPlayer}) {
         
         Render.availableMoves(chessBoard, row, col);
         Render.availableAttack(chessBoard, row, col);
+
+        func.isCheck(chessBoard, currentPlayer);
+        func.isMath(chessBoard, currentPlayer);
     });
 }
 
