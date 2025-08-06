@@ -4,6 +4,7 @@ import { Bishop } from "./chessPieces/Bishop.js";
 import { Knight } from "./chessPieces/Knight.js";
 import { Queen } from "./chessPieces/Queen.js";
 import { King } from "./chessPieces/King.js";
+import * as func from './func.js';
 import { Render } from './render.js';
 
 export function start(chessBoard) {
@@ -37,7 +38,7 @@ export function start(chessBoard) {
 }
 
 
-export function  generateHtmlCells() {
+export function generateHtmlCells() {
     for (let i = 7; i >= 0; --i) {
         for (let j = 7; j >= 0; --j) {
             const cell = document.createElement('div');
@@ -88,18 +89,19 @@ export function isCheck(chessBoard, color) {
 }
 
 export function isMath(chessBoard, color) {
-    if (!isCheck(chessBoard, color)) {
-        return;
-    }
-
     let math = true;
 
     for (let i = 0; i < 8; i++) {
         for (let j = 0; j < 8; j++) {
             const piece = chessBoard.board[i][j];
             if (piece && piece.color === color) {
-                const moves_pos = Render.availableMoves(chessBoard, i, j);
-                const attack_pos = Render.availableAttack(chessBoard, i, j);
+                const moves_pos = piece.getAvailableMoves(chessBoard).filter((value) => {
+                    return func.virtualBoard(chessBoard, piece.color, i, j, value[0], value[1]);
+                });
+
+                const attack_pos = piece.getAvailableAttack(chessBoard).filter((value) => {
+                    return func.virtualBoard(chessBoard, piece.color, i, j, value[0], value[1]);
+                });
 
                 if (moves_pos.length > 0 || attack_pos.length > 0) {
                     math = false;
@@ -110,8 +112,10 @@ export function isMath(chessBoard, color) {
     }
 
     if (math) {
-        alert('Checkmate! ' + color + ' player wins!');
-        location.reload();
+        const menu = document.querySelector('.menu');
+        const winner = color === 'white' ? 'Black' : 'White';
+        menu.style.transform = 'scale(1)';
+        document.getElementById('winner').textContent = `${winner} wins!`;
         return;
     }
 }

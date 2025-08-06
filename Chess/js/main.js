@@ -1,6 +1,7 @@
 import { ChessBoard } from './chess_board.js';
-import * as func from './func.js';
 import { boardEvents } from './event.js';
+import * as func from './func.js';
+
 
 func.generateHtmlCells();
 

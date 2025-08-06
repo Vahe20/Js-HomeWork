@@ -217,11 +217,55 @@ svg * {
   padding-inline: 0.75rem;
 }
 
+body {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
 .wrap {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+.wrap .menu {
+  position: absolute;
+  background-color: rgb(192, 191, 191);
+  transform: scale(0);
+  border: 2px solid #000;
+  transition: 0.4s;
+  width: 70%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+  align-items: center;
+}
+.wrap .menu__winner {
+  font-size: 2.5rem;
+  color: #000;
+}
+.wrap .menu__restart {
+  padding: 0.625rem 1.875rem;
+  cursor: pointer;
+}
+.wrap .menu__restart:hover {
+  background-color: #000;
+  color: #fff;
+}
+.wrap .promote {
+  position: absolute;
+  background-color: rgb(192, 191, 191);
+  transform: scale(0);
+  border: 2px solid #000;
+  transition: 0.4s;
+  width: 70%;
+  height: 60%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 1.25rem;
 }
 .wrap .board {
   border: 1px solid #000;

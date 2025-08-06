@@ -26,24 +26,14 @@ export class Pawn extends ChessPiece {
     getAvailableAttack(chessBoard) {
         const attack = [];
 
-        if (this.color === "white") {
-            if (this.position[1] + 1 < 8 && chessBoard.board[this.position[0] + 1] && chessBoard.board[this.position[0] + 1][this.position[1] + 1] && chessBoard.board[this.position[0] + 1][this.position[1] + 1].color === "black") {
-                attack.push([ this.position[0] + 1, this.position[1] + 1 ]);
-            }
+        const direction = this.color === "white" ? 1 : -1;
 
-            if (this.position[1] - 1 >= 0 && chessBoard.board[this.position[0] + 1] && chessBoard.board[this.position[0] + 1][this.position[1] - 1] && chessBoard.board[this.position[0] + 1][this.position[1] - 1].color === "black") {
-                attack.push([ this.position[0] + 1, this.position[1] - 1 ]);
-            }
+        if (this.position[1] + 1 < 8 && chessBoard.board[this.position[0] + direction] && chessBoard.board[this.position[0] + direction][this.position[1] + 1] && chessBoard.board[this.position[0] + direction][this.position[1] + 1].color !== this.color) {
+            attack.push([ this.position[0] + direction, this.position[1] + 1 ]);
         }
 
-        if (this.color === "black") {
-            if (this.position[1] + 1 < 8 && chessBoard.board[this.position[0] - 1] && chessBoard.board[this.position[0] - 1][this.position[1] + 1] && chessBoard.board[this.position[0] - 1][this.position[1] + 1].color === "white") {
-                attack.push([ this.position[0] - 1, this.position[1] + 1 ]);
-            }
-
-            if (this.position[1] - 1 >= 0 && chessBoard.board[this.position[0] - 1] && chessBoard.board[this.position[0] - 1][this.position[1] - 1] && chessBoard.board[this.position[0] - 1][this.position[1] - 1].color === "white") {
-                attack.push([ this.position[0] - 1, this.position[1] - 1 ]);
-            }
+        if (this.position[1] - 1 >= 0 && chessBoard.board[this.position[0] + direction] && chessBoard.board[this.position[0] + direction][this.position[1] - 1] && chessBoard.board[this.position[0] + direction][this.position[1] - 1].color !== this.color) {
+            attack.push([ this.position[0] + direction, this.position[1] - 1 ]);
         }
 
         return attack;
