@@ -64,14 +64,9 @@ export function boardEvents(chessBoard, currentPlayer) {
         func.isMath(chessBoard, currentPlayer);
     });
 
-
-    
-    const menu = document.querySelector('.menu');
     
     document.getElementById('restart').addEventListener("click", () => {
-        func.start(chessBoard);
-        menu.style.transform = 'scale(0)';
-        Render.clearSelectedCell();
+        location.reload();
     });
 }
 
