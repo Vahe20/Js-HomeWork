@@ -1,59 +1,55 @@
-import * as func from './func.js';
-
+import { ChessPiece } from "./chessPiece/chessPiece.js";
 export class Render {
     static renderBoard(chessBoard) {
+        var _a;
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
                 const cell = document.querySelector(`.cell-${i}-${j}`);
-                const piece = chessBoard.board[i][j];
-                if (piece) {
-                    cell.innerHTML = `<img src="${piece.img}" draggable="false" alt="${piece.type}">`;
-                } else {
+                const piece = (_a = chessBoard.board[i]) === null || _a === void 0 ? void 0 : _a[j];
+                if (!cell)
+                    continue;
+                if (piece instanceof ChessPiece) {
+                    cell.innerHTML = `<img class="${piece.getColor() === 'white' ? 'white' : 'black'}" src="${piece.getImg()}" draggable="false" alt="${piece.getType()}">`;
+                }
+                else {
                     cell.innerHTML = '';
                 }
             }
         }
     }
-
-    static availableMoves(chessBoard, row, col) {
-        const cell = chessBoard.board[row][col];
-
-        if (!cell) return;
-
-        const av_cells = cell.getAvailableMoves(chessBoard).filter((value) => {
-            return func.virtualBoard(chessBoard, cell.color, row, col, value[0], value[1]);
+    static renderMoves(moves) {
+        moves.forEach(pos => {
+            const cell = document.querySelector(`.cell-${pos.row}-${pos.col}`);
+            if (cell)
+                cell.id = "available_cell";
         });
-
-        av_cells.forEach((value) => {
-            document.querySelector(`.cell-${value[0]}-${value[1]}`).id = "available_cell";
-        });
-
-        return av_cells;
     }
-
-    static availableAttack(chessBoard, row, col) {
-        const cell = chessBoard.board[row][col];
-
-        if (!cell) return;
-
-        const av_cells = cell.getAvailableAttack(chessBoard).filter((value) => {
-            return func.virtualBoard(chessBoard, cell.color, row, col, value[0], value[1]);
-        });
-
-        if (!av_cells) return;
-
-        av_cells.forEach((value) => {
-            document.querySelector(`.cell-${value[0]}-${value[1]}`).id = "attack_cell";
-        });
-
-        return av_cells;
+    static renderCheck(chessBoard, row, col) {
+        const tmp = document.querySelector(`.cell-${row}-${col}`);
+        if (tmp)
+            tmp.id = "check_cell";
     }
-
+    static renderMath(chessBoard) {
+        const color = chessBoard.getCurrentPlayer();
+        const winnerColor = color === 'white' ? 'Black' : 'White';
+        const menu = document.querySelector('.menu');
+        const winner = document.getElementById('win');
+        const menuImg = document.getElementById('menu_img');
+        if (menu)
+            menu.style.transform = 'scale(1)';
+        if (winner)
+            winner.textContent = `${winnerColor} win!`;
+        if (menuImg)
+            menuImg.src = `images/${color === 'white' ? 'black' : 'white'}_king.png`;
+    }
     static clearSelectedCell() {
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
-                document.querySelector(`.cell-${i}-${j}`).id = "";
+                const tmp = document.querySelector(`.cell-${i}-${j}`);
+                if (tmp)
+                    tmp.id = "";
             }
         }
     }
 }
+//# sourceMappingURL=render.js.map

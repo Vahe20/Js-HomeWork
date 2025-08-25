@@ -47,8 +47,10 @@
         width: 70%;
         height: 60%;
 
-        display: grid;
+        display: flex;
+        justify-content: space-around;
         grid-template-columns: repeat(4, 1fr);
+        align-items: center;
         padding: rem(20);
     }
 
@@ -67,16 +69,12 @@
         }
 
         .black_cell {
-            background-color: rgb(87, 60, 34);
+            background-color: rgb(124, 87, 51);
         }
     }
 
     #available_cell {
         background-color: green;
-    }
-
-    #attack_cell {
-        background-color: red;
     }
 
     #check_cell {
@@ -89,6 +87,10 @@
         .board {
             width: rem(400);
             height: rem(400);
+
+            .black {
+                rotate: 180deg;
+            }
         }
     }
 }

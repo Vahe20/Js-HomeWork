@@ -263,8 +263,10 @@ body {
   transition: 0.4s;
   width: 70%;
   height: 60%;
-  display: grid;
+  display: flex;
+  justify-content: space-around;
   grid-template-columns: repeat(4, 1fr);
+  align-items: center;
   padding: 1.25rem;
 }
 .wrap .board {
@@ -281,13 +283,10 @@ body {
   background-color: rgb(243, 200, 106);
 }
 .wrap .board .black_cell {
-  background-color: rgb(87, 60, 34);
+  background-color: rgb(124, 87, 51);
 }
 .wrap #available_cell {
   background-color: green;
-}
-.wrap #attack_cell {
-  background-color: red;
 }
 .wrap #check_cell {
   background-color: yellow;
@@ -297,5 +296,8 @@ body {
   .wrap .board {
     width: 25rem;
     height: 25rem;
+  }
+  .wrap .board .black {
+    rotate: 180deg;
   }
 }/*# sourceMappingURL=main.css.map */
