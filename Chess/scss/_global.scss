@@ -1,0 +1,18 @@
+@use './helpers' as *;
+
+
+
+.container {
+    @include min-max(390px, 100%);
+}
+
+.wrap {
+    @include min-max(358px, 1180px);
+
+    padding-inline: rem(12);
+}
+
+
+body {
+    user-select: none;
+}
