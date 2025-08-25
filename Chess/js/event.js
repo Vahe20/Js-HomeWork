@@ -1,7 +1,7 @@
 import { Render } from './render.js';
 import * as func from './func.js';
 export function boardEvents(chessBoard) {
-    var _a, _b;
+    var _a, _b, _c;
     let selectedPiece = undefined;
     (_a = document.querySelector('.board')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', (event) => {
         var _a, _b, _c, _d;
@@ -49,8 +49,13 @@ export function boardEvents(chessBoard) {
     (_b = document.getElementById('restart')) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
         func.start(chessBoard);
         const tmp = document.querySelector('.menu');
+        chessBoard.changeCurrentPlayer();
         tmp.style.transform = 'scale(0)';
         Render.renderBoard(chessBoard);
+    });
+    (_c = document.getElementById('rotation')) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => {
+        const tmp = document.querySelector('.black');
+        tmp.style.rotate = '180deg';
     });
 }
 //# sourceMappingURL=event.js.map

@@ -61,6 +61,7 @@ export function boardEvents(chessBoard: ChessBoard) {
     document.getElementById('restart')?.addEventListener("click", () => {
         func.start(chessBoard);
         const tmp = document.querySelector('.menu') as HTMLDivElement;
+        chessBoard.changeCurrentPlayer();
         tmp.style.transform = 'scale(0)';
         Render.renderBoard(chessBoard);
     });
