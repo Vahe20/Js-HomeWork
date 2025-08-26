@@ -82,15 +82,18 @@
     }
 }
 
+
+@include tablet {
+    .black {
+        rotate: 180deg;
+    }
+}
+
 @include mobile {
     .wrap {
         .board {
             width: rem(400);
             height: rem(400);
-
-            .black {
-                rotate: 180deg;
-            }
         }
     }
 }

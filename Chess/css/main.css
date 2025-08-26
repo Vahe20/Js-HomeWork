@@ -292,12 +292,14 @@ body {
   background-color: yellow;
 }
 
+@media (width <= 63.99875rem) {
+  .black {
+    rotate: 180deg;
+  }
+}
 @media (width <= 47.99875rem) {
   .wrap .board {
     width: 25rem;
     height: 25rem;
-  }
-  .wrap .board .black {
-    rotate: 180deg;
   }
 }/*# sourceMappingURL=main.css.map */
