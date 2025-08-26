@@ -292,7 +292,7 @@ body {
   background-color: yellow;
 }
 
-@media (width <= 100.99875rem) {
+@media (width <= 63.99875rem) {
   .black {
     rotate: 180deg;
   }
