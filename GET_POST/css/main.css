@@ -7,6 +7,8 @@ body {
 
 .reg {
   border: solid 2px black;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 50px;
   border-radius: 10px;
 }
@@ -21,4 +23,21 @@ body {
 .reg__form input {
   padding: 10px;
   width: 200px;
+  transition: 0.3s;
+}
+.reg__form input:focus {
+  transform: scale(1.1);
+}
+.reg__form button {
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.reg__form button:hover {
+  transform: scale(1.1);
+  background-color: #fff;
+  color: #000;
 }/*# sourceMappingURL=main.css.map */

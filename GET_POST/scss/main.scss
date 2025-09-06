@@ -7,6 +7,8 @@ body {
 
 .reg {
     border: solid 2px black;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     padding: 50px;
     border-radius: 10px;
 
@@ -22,7 +24,27 @@ body {
         input {
             padding: 10px;
             width: 200px;
+            transition: .3s;
 
+
+            &:focus {
+                transform: scale(1.1);
+            }
+        }
+
+        button {
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+                transform: scale(1.1);
+                background-color: #fff;
+                color: #000;
+            }
         }
     }
 }
