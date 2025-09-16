@@ -223,6 +223,10 @@ body {
           user-select: none;
 }
 
+:root {
+  --transition: .4s;
+}
+
 .wrap {
   display: flex;
   justify-content: center;
@@ -234,7 +238,7 @@ body {
   background-color: rgb(192, 191, 191);
   transform: scale(0);
   border: 2px solid #000;
-  transition: 0.4s;
+  transition: var(--transition);
   width: 70%;
   height: 60%;
   display: flex;
@@ -260,7 +264,7 @@ body {
   background-color: rgb(192, 191, 191);
   transform: scale(0);
   border: 2px solid #000;
-  transition: 0.4s;
+  transition: var(--transition);
   display: flex;
   justify-content: space-around;
   grid-template-columns: repeat(4, 1fr);
@@ -275,18 +279,24 @@ body {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  transition: 0.3s;
+  transition: var(--transition) s;
 }
 .wrap .board_cell {
   border: 1px solid #000;
   background-color: rgb(243, 200, 106);
-  transition: 0.3s;
+  transition: var(--transition);
 }
 .wrap .board .black_cell {
   background-color: rgb(124, 87, 51);
 }
 .wrap #available_cell {
   background-color: green;
+}
+.wrap #attack_cell {
+  background-color: red;
+}
+.wrap #castling_cell {
+  background-color: blue;
 }
 .wrap #check_cell {
   background-color: yellow;

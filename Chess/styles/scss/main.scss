@@ -1,5 +1,6 @@
 @use 'normalize';
 @use 'global';
+@use 'variables';
 
 
 @use './helpers'as *;
@@ -15,7 +16,7 @@
         background-color: rgb(192, 191, 191);
         transform: scale(0);
         border: 2px solid #000;
-        transition: .4s;
+        transition: var(--transition);
         width: 70%;
         height: 60%;
 
@@ -47,7 +48,7 @@
         background-color: rgb(192, 191, 191);
         transform: scale(0);
         border: 2px solid #000;
-        transition: .4s;
+        transition: var(--transition);
 
         display: flex;
         justify-content: space-around;
@@ -64,13 +65,13 @@
         display: grid;
         grid-template-columns: repeat(8, 1fr);
         grid-template-rows: repeat(8, 1fr);
-        transition: .3s;
+        transition: var(--transition)s;
 
 
         &_cell {
             border: 1px solid #000;
             background-color: rgb(243, 200, 106);
-            transition: .3s;
+            transition: var(--transition);
         }
 
         .black_cell {
@@ -80,6 +81,14 @@
 
     #available_cell {
         background-color: green;
+    }
+
+    #attack_cell {
+        background-color: red;
+    }
+
+    #castling_cell {
+        background-color: blue;
     }
 
     #check_cell {

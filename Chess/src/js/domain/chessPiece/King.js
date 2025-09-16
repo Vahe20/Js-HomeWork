@@ -1,11 +1,9 @@
 import { ChessPiece } from "./chessPiece.js";
+import * as func from "../func.js";
+import { Rook } from "./Rook.js";
 export class King extends ChessPiece {
     constructor(color, type, position, img) {
         super(color, type, position, img);
-        this.isMoved = false;
-    }
-    changeStatus() {
-        this.isMoved = true;
     }
     getAvailableMoves(chessBoard) {
         const moves = [];
@@ -28,29 +26,55 @@ export class King extends ChessPiece {
                     moves.push({ row: newRow, col: newCol });
             }
         });
-        let Castling = this.castling(chessBoard);
-        if (Castling) {
-            moves.push(Castling);
-        }
         return moves;
-    }
-    clone() {
-        return new King(this.color, this.type, { row: this.position.row, col: this.position.col }, this.img);
-    }
-    move(chessBoard, pos, newPos) {
-        this.changeStatus();
-        chessBoard.deletePiece(pos.row, pos.col);
-        chessBoard.setPiece(newPos.row, newPos.col, this);
-        this.setPosition({ row: newPos.row, col: newPos.col });
     }
     castling(chessBoard) {
         if (this.isMoved === true) {
             return;
         }
+        const shortPos = [
+            { row: this.position.row, col: this.position.col + 1 },
+            { row: this.position.row, col: this.position.col + 2 },
+        ];
+        const longPos = [
+            { row: this.position.row, col: this.position.col - 1 },
+            { row: this.position.row, col: this.position.col - 2 },
+            { row: this.position.row, col: this.position.col - 3 },
+        ];
+        const castlingMoves = [];
         const color = this.color;
         const row = color === "white" ? 0 : 7;
-        const col = this.position.col;
         const rookShort = chessBoard.getPiece(row, 7);
+        const rookLong = chessBoard.getPiece(row, 0);
+        if (rookShort instanceof Rook && rookShort.getColor() === color) {
+            if (rookShort.getStatus() === false) {
+                const canCastleShort = shortPos.every(pos => {
+                    return func.virtualBoard(chessBoard, { row: this.position.row, col: this.position.col }, { row: pos.row, col: pos.col });
+                });
+                if (chessBoard.getPiece(row, 5) === undefined &&
+                    chessBoard.getPiece(row, 6) === undefined &&
+                    canCastleShort) {
+                    castlingMoves.push({ row: row, col: 6 });
+                }
+            }
+        }
+        if (rookLong instanceof Rook && rookLong.getColor() === color) {
+            if (rookLong.getStatus() === false) {
+                const canCastleLong = longPos.every(pos => {
+                    return func.virtualBoard(chessBoard, { row: this.position.row, col: this.position.col }, { row: pos.row, col: pos.col });
+                });
+                if (chessBoard.getPiece(row, 1) === undefined &&
+                    chessBoard.getPiece(row, 2) === undefined &&
+                    chessBoard.getPiece(row, 3) === undefined &&
+                    canCastleLong) {
+                    castlingMoves.push({ row: row, col: 2 });
+                }
+            }
+        }
+        return castlingMoves;
+    }
+    clone() {
+        return new King(this.color, this.type, { row: this.position.row, col: this.position.col }, this.img);
     }
 }
 //# sourceMappingURL=King.js.map

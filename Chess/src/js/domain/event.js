@@ -4,7 +4,7 @@ export function boardEvents(chessBoard) {
     var _a, _b;
     let selectedPiece = undefined;
     (_a = document.querySelector(".board")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", event => {
-        var _a, _b;
+        var _a, _b, _c, _d;
         if (event.target instanceof Element) {
             const cell = event.target.closest(".board_cell");
             if (!cell)
@@ -29,6 +29,19 @@ export function boardEvents(chessBoard) {
                     }
                     Render.renderBoard(chessBoard);
                 }
+                if (cell && cell.id === "castling_cell") {
+                    const pos = selectedPiece.getPosition();
+                    selectedPiece.move(chessBoard, { row: pos.row, col: pos.col }, { row, col });
+                    const rook = chessBoard.getPiece(row, col === 6 ? 7 : 0);
+                    if (rook) {
+                        rook.move(chessBoard, { row: row, col: col === 6 ? 7 : 0 }, { row: row, col: col === 6 ? 5 : 3 });
+                    }
+                    chessBoard.changeCurrentPlayer();
+                    if (func.isMath(chessBoard)) {
+                        Render.renderMath(chessBoard);
+                    }
+                    Render.renderBoard(chessBoard);
+                }
             }
             if (chessBoard.getPiece(row, col) &&
                 ((_a = chessBoard.getPiece(row, col)) === null || _a === void 0 ? void 0 : _a.getColor()) ===
@@ -38,6 +51,10 @@ export function boardEvents(chessBoard) {
                 const av_moves = (_b = selectedPiece === null || selectedPiece === void 0 ? void 0 : selectedPiece.getAvailableMoves(chessBoard)) === null || _b === void 0 ? void 0 : _b.filter(pos => {
                     return func.virtualBoard(chessBoard, { row: row, col: col }, { row: pos.row, col: pos.col });
                 });
+                const castling_pos = (_d = (_c = selectedPiece).castling) === null || _d === void 0 ? void 0 : _d.call(_c, chessBoard);
+                if (castling_pos) {
+                    Render.renderCastlingMove(castling_pos);
+                }
                 if (av_moves) {
                     Render.renderMoves(av_moves);
                 }

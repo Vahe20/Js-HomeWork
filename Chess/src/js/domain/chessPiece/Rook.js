@@ -2,13 +2,6 @@ import { ChessPiece } from "./chessPiece.js";
 export class Rook extends ChessPiece {
     constructor(color, type, position, img) {
         super(color, type, position, img);
-        this.isMoved = false;
-    }
-    getStatus() {
-        return this.isMoved;
-    }
-    changeStatus() {
-        this.isMoved = true;
     }
     getAvailableMoves(chessBoard) {
         const moves = [];
@@ -34,12 +27,6 @@ export class Rook extends ChessPiece {
             }
         }
         return moves;
-    }
-    move(chessBoard, pos, newPos) {
-        this.changeStatus();
-        chessBoard.deletePiece(pos.row, pos.col);
-        chessBoard.setPiece(newPos.row, newPos.col, this);
-        this.setPosition({ row: newPos.row, col: newPos.col });
     }
     clone() {
         return new Rook(this.color, this.type, { row: this.position.row, col: this.position.col }, this.img);

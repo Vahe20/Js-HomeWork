@@ -3,8 +3,6 @@ import * as Types from "../globalTypes.js";
 import { ChessBoard } from "../chess_board.js";
 
 export class Rook extends ChessPiece {
-	private isMoved = false;
-
 	constructor(
 		color: Types.typePieceColor,
 		type: Types.typePiece,
@@ -12,14 +10,6 @@ export class Rook extends ChessPiece {
 		img: string
 	) {
 		super(color, type, position, img);
-	}
-
-    getStatus(): boolean {
-        return this.isMoved;
-    }
-
-	changeStatus() {
-		this.isMoved = true;
 	}
 
 	getAvailableMoves(chessBoard: ChessBoard) {
@@ -53,17 +43,6 @@ export class Rook extends ChessPiece {
 		}
 
 		return moves;
-	}
-
-	move(
-		chessBoard: ChessBoard,
-		pos: Types.position,
-		newPos: Types.position
-	): void {
-		this.changeStatus();
-		chessBoard.deletePiece(pos.row, pos.col);
-		chessBoard.setPiece(newPos.row, newPos.col, this);
-		this.setPosition({ row: newPos.row, col: newPos.col });
 	}
 
 	clone(): ChessPiece | undefined {

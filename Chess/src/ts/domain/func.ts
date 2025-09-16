@@ -168,9 +168,22 @@ export function selectPiecePromotion(
 
 	const currentPlayer = chessBoard.getCurrentPlayer();
 
+	const queen_btn = document.getElementById("promote_btn-queen");
+	const rook_btn = document.getElementById("promote_btn-rook");
+	const bishop_btn = document.getElementById("promote_btn-bishop");
+	const knight_btn = document.getElementById("promote_btn-knight");
+
+	queen_btn?.replaceWith(queen_btn.cloneNode(true) as HTMLButtonElement);
+
+	rook_btn?.replaceWith(rook_btn.cloneNode(true) as HTMLButtonElement);
+
+	bishop_btn?.replaceWith(bishop_btn.cloneNode(true) as HTMLButtonElement);
+
+	knight_btn?.replaceWith(knight_btn.cloneNode(true) as HTMLButtonElement);
+
 	document
 		.getElementById(`promote_btn-queen`)
-		?.addEventListener("click", event => {
+		?.addEventListener("click", () => {
 			chessBoard.setPiece(
 				row,
 				col,
@@ -187,7 +200,7 @@ export function selectPiecePromotion(
 
 	document
 		.getElementById(`promote_btn-rook`)
-		?.addEventListener("click", event => {
+		?.addEventListener("click", () => {
 			chessBoard.setPiece(
 				row,
 				col,
@@ -204,7 +217,7 @@ export function selectPiecePromotion(
 
 	document
 		.getElementById(`promote_btn-bishop`)
-		?.addEventListener("click", event => {
+		?.addEventListener("click", () => {
 			chessBoard.setPiece(
 				row,
 				col,
@@ -221,7 +234,7 @@ export function selectPiecePromotion(
 
 	document
 		.getElementById(`promote_btn-knight`)
-		?.addEventListener("click", event => {
+		?.addEventListener("click", () => {
 			chessBoard.setPiece(
 				row,
 				col,

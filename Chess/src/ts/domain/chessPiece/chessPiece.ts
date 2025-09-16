@@ -6,6 +6,7 @@ export abstract class ChessPiece {
 	protected type: Types.typePiece;
 	protected position: Types.position;
 	protected img: string;
+	protected isMoved = false;
 
 	constructor(
 		color: Types.typePieceColor,
@@ -17,6 +18,14 @@ export abstract class ChessPiece {
 		this.type = type;
 		this.position = position;
 		this.img = img;
+	}
+
+	getStatus(): boolean {
+		return this.isMoved;
+	}
+
+	changeStatus() {
+		this.isMoved = true;
 	}
 
 	getColor(): Types.typePieceColor {
@@ -55,7 +64,12 @@ export abstract class ChessPiece {
 
 	abstract getAvailableMoves(chessBoard: ChessBoard): Types.position[] | void;
 
-	move(chessBoard: ChessBoard, pos: Types.position, newPos: Types.position) {
+	move(
+		chessBoard: ChessBoard,
+		pos: Types.position,
+		newPos: Types.position
+	): void {
+		this.changeStatus();
 		chessBoard.deletePiece(pos.row, pos.col);
 		chessBoard.setPiece(newPos.row, newPos.col, this);
 		this.setPosition({ row: newPos.row, col: newPos.col });

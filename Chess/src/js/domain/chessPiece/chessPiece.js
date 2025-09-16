@@ -1,9 +1,16 @@
 export class ChessPiece {
     constructor(color, type, position, img) {
+        this.isMoved = false;
         this.color = color;
         this.type = type;
         this.position = position;
         this.img = img;
+    }
+    getStatus() {
+        return this.isMoved;
+    }
+    changeStatus() {
+        this.isMoved = true;
     }
     getColor() {
         return this.color;
@@ -30,6 +37,7 @@ export class ChessPiece {
         this.img = img;
     }
     move(chessBoard, pos, newPos) {
+        this.changeStatus();
         chessBoard.deletePiece(pos.row, pos.col);
         chessBoard.setPiece(newPos.row, newPos.col, this);
         this.setPosition({ row: newPos.row, col: newPos.col });

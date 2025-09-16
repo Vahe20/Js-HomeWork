@@ -45,6 +45,33 @@ export function boardEvents(chessBoard: ChessBoard) {
 
 					Render.renderBoard(chessBoard);
 				}
+
+				if (cell && cell.id === "castling_cell") {
+					const pos = selectedPiece.getPosition();
+
+					selectedPiece.move(
+						chessBoard,
+						{ row: pos.row, col: pos.col },
+						{ row, col }
+					);
+
+					const rook = chessBoard.getPiece(row, col === 6 ? 7 : 0);
+					if (rook) {
+						rook.move(
+							chessBoard,
+							{ row: row, col: col === 6 ? 7 : 0 },
+							{ row: row, col: col === 6 ? 5 : 3 }
+						);
+					}
+
+					chessBoard.changeCurrentPlayer();
+
+					if (func.isMath(chessBoard)) {
+						Render.renderMath(chessBoard);
+					}
+
+					Render.renderBoard(chessBoard);
+				}
 			}
 
 			if (
@@ -54,6 +81,7 @@ export function boardEvents(chessBoard: ChessBoard) {
 			) {
 				Render.clearSelectedCell();
 				selectedPiece = chessBoard.getPiece(row, col);
+
 				const av_moves = selectedPiece
 					?.getAvailableMoves(chessBoard)
 					?.filter(pos => {
@@ -63,6 +91,14 @@ export function boardEvents(chessBoard: ChessBoard) {
 							{ row: pos.row, col: pos.col }
 						);
 					});
+
+				const castling_pos = (selectedPiece as any).castling?.(
+					chessBoard
+				);
+
+				if (castling_pos) {
+					Render.renderCastlingMove(castling_pos);
+				}
 
 				if (av_moves) {
 					Render.renderMoves(av_moves);

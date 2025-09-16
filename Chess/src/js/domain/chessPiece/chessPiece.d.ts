@@ -5,7 +5,10 @@ export declare abstract class ChessPiece {
     protected type: Types.typePiece;
     protected position: Types.position;
     protected img: string;
+    protected isMoved: boolean;
     constructor(color: Types.typePieceColor, type: Types.typePiece, position: Types.position, img: string);
+    getStatus(): boolean;
+    changeStatus(): void;
     getColor(): Types.typePieceColor;
     setColor(color: Types.typePieceColor): void;
     getType(): Types.typePiece;
