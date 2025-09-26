@@ -1,4 +1,4 @@
-@use './helpers' as *;
+@use './helpers'as *;
 
 
 
@@ -15,4 +15,15 @@
 
 body {
     user-select: none;
+}
+
+
+
+.btn {
+    transition: var(--transition);
+    
+    &:hover {
+        background-color: #000;
+        color: #fff;
+    }
 }

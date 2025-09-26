@@ -110,11 +110,22 @@ export function boardEvents(chessBoard: ChessBoard) {
 		}
 	});
 
+
+	document.getElementById("menu_open")?.addEventListener('click', () => {
+		const menu = document.querySelector(".menu") as HTMLDivElement;
+		menu.style.transform = "scale(1)";
+	})
+
+
+	document.getElementById("menu_exit")?.addEventListener('click', () => {
+		const menu = document.querySelector(".menu") as HTMLDivElement;
+		menu.style.transform = "scale(0)";
+	});
+
 	document.getElementById("restart")?.addEventListener("click", () => {
 		func.start(chessBoard);
-		const tmp = document.querySelector(".menu") as HTMLDivElement;
-		chessBoard.changeCurrentPlayer();
-		tmp.style.transform = "scale(0)";
+		const menu = document.querySelector(".menu") as HTMLDivElement;
+		menu.style.transform = "scale(0)";
 		Render.renderBoard(chessBoard);
 	});
 }

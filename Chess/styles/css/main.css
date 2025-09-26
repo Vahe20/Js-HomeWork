@@ -223,8 +223,22 @@ body {
           user-select: none;
 }
 
+.btn {
+  transition: var(--transition);
+}
+.btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
 :root {
   --transition: .4s;
+}
+
+.header__menu-btn {
+  position: fixed;
+  left: 10px;
+  top: 10px;
 }
 
 .wrap {
@@ -247,6 +261,10 @@ body {
   padding: 1.25rem;
   align-items: center;
 }
+.wrap .menu__exit {
+  position: absolute;
+  right: 20px;
+}
 .wrap .menu__winner {
   font-size: 2.5rem;
   color: #000;
@@ -254,10 +272,6 @@ body {
 .wrap .menu__restart {
   padding: 0.625rem 1.875rem;
   cursor: pointer;
-}
-.wrap .menu__restart:hover {
-  background-color: #000;
-  color: #fff;
 }
 .wrap .promote {
   position: absolute;
@@ -286,8 +300,14 @@ body {
   background-color: rgb(243, 200, 106);
   transition: var(--transition);
 }
+.wrap .board_cell:hover {
+  background-color: rgb(56, 55, 54);
+}
 .wrap .board .black_cell {
   background-color: rgb(124, 87, 51);
+}
+.wrap .board .black_cell:hover {
+  background-color: rgb(56, 55, 54);
 }
 .wrap #available_cell {
   background-color: green;

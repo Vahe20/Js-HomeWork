@@ -1,7 +1,7 @@
 import { Render } from "./render.js";
 import * as func from "./func.js";
 export function boardEvents(chessBoard) {
-    var _a, _b;
+    var _a, _b, _c, _d;
     let selectedPiece = undefined;
     (_a = document.querySelector(".board")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", event => {
         var _a, _b, _c, _d;
@@ -65,11 +65,18 @@ export function boardEvents(chessBoard) {
             }
         }
     });
-    (_b = document.getElementById("restart")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
+    (_b = document.getElementById("menu_open")) === null || _b === void 0 ? void 0 : _b.addEventListener('click', () => {
+        const menu = document.querySelector(".menu");
+        menu.style.transform = "scale(1)";
+    });
+    (_c = document.getElementById("menu_exit")) === null || _c === void 0 ? void 0 : _c.addEventListener('click', () => {
+        const menu = document.querySelector(".menu");
+        menu.style.transform = "scale(0)";
+    });
+    (_d = document.getElementById("restart")) === null || _d === void 0 ? void 0 : _d.addEventListener("click", () => {
         func.start(chessBoard);
-        const tmp = document.querySelector(".menu");
-        chessBoard.changeCurrentPlayer();
-        tmp.style.transform = "scale(0)";
+        const menu = document.querySelector(".menu");
+        menu.style.transform = "scale(0)";
         Render.renderBoard(chessBoard);
     });
 }

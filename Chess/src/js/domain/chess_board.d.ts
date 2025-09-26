@@ -6,6 +6,7 @@ export declare class ChessBoard {
     constructor(color?: Types.typePieceColor);
     getCurrentPlayer(): Types.typePieceColor;
     changeCurrentPlayer(): void;
+    setCurrentPlayer(color: Types.typePieceColor): void;
     getPiece(i: number, j: number): ChessPiece | undefined;
     setPiece(i: number, j: number, Piece: ChessPiece): void;
     deletePiece(i: number, j: number): void;

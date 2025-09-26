@@ -9,6 +9,9 @@ export class ChessBoard {
     changeCurrentPlayer() {
         this.currentPlayer = this.currentPlayer === "white" ? "black" : "white";
     }
+    setCurrentPlayer(color) {
+        this.currentPlayer = color;
+    }
     getPiece(i, j) {
         var _a;
         return (_a = this.board[i]) === null || _a === void 0 ? void 0 : _a[j];

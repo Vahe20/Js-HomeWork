@@ -5,6 +5,13 @@
 
 @use './helpers'as *;
 
+
+.header__menu-btn {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+}
+
 .wrap {
     display: flex;
     justify-content: center;
@@ -26,20 +33,19 @@
         padding: rem(20);
         align-items: center;
 
+        &__exit {
+            position: absolute;
+            right: 20px;
+        }
+
         &__winner {
             font-size: rem(40);
             color: #000;
         }
 
-
         &__restart {
             padding: rem(10) rem(30);
             cursor: pointer;
-
-            &:hover {
-                background-color: #000;
-                color: #fff;
-            }
         }
     }
 
@@ -72,10 +78,18 @@
             border: 1px solid #000;
             background-color: rgb(243, 200, 106);
             transition: var(--transition);
+
+            &:hover {
+                background-color: rgb(56, 55, 54);
+            }
         }
 
         .black_cell {
             background-color: rgb(124, 87, 51);
+
+            &:hover {
+                background-color: rgb(56, 55, 54);
+            }
         }
     }
 
