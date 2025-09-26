@@ -1,4 +1,5 @@
 import { Render } from "./render.js";
+import { History } from "./history.js";
 import * as func from "./func.js";
 export function boardEvents(chessBoard) {
     var _a, _b, _c, _d, _e, _f;
@@ -20,6 +21,7 @@ export function boardEvents(chessBoard) {
                 if (cell && cell.id === "available_cell") {
                     const pos = selectedPiece.getPosition();
                     selectedPiece.move(chessBoard, { row: pos.row, col: pos.col }, { row, col });
+                    History.addMove({ row: pos.row, col: pos.col }, { row, col });
                     if (func.isPawnPromotion(chessBoard, row, col)) {
                         func.selectPiecePromotion(chessBoard, row, col);
                     }
@@ -65,11 +67,11 @@ export function boardEvents(chessBoard) {
             }
         }
     });
-    (_b = document.getElementById("menu_open")) === null || _b === void 0 ? void 0 : _b.addEventListener('click', () => {
+    (_b = document.getElementById("menu_open")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
         const menu = document.querySelector(".menu");
         menu.style.transform = "scale(1)";
     });
-    (_c = document.getElementById("menu_exit")) === null || _c === void 0 ? void 0 : _c.addEventListener('click', () => {
+    (_c = document.getElementById("menu_exit")) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => {
         const menu = document.querySelector(".menu");
         menu.style.transform = "scale(0)";
     });

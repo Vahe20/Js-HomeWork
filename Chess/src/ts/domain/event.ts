@@ -1,5 +1,6 @@
 import { Render } from "./render.js";
 import { ChessBoard } from "./chess_board.js";
+import { History } from "./history.js";
 import * as func from "./func.js";
 
 import { ChessPiece } from "./chessPiece/chessPiece.js";
@@ -32,6 +33,8 @@ export function boardEvents(chessBoard: ChessBoard) {
 						{ row: pos.row, col: pos.col },
 						{ row, col }
 					);
+
+					History.addMove({row: pos.row, col: pos.col}, {row, col})
 
 					if (func.isPawnPromotion(chessBoard, row, col)) {
 						func.selectPiecePromotion(chessBoard, row, col);
@@ -110,14 +113,12 @@ export function boardEvents(chessBoard: ChessBoard) {
 		}
 	});
 
-
-	document.getElementById("menu_open")?.addEventListener('click', () => {
+	document.getElementById("menu_open")?.addEventListener("click", () => {
 		const menu = document.querySelector(".menu") as HTMLDivElement;
 		menu.style.transform = "scale(1)";
-	})
+	});
 
-
-	document.getElementById("menu_exit")?.addEventListener('click', () => {
+	document.getElementById("menu_exit")?.addEventListener("click", () => {
 		const menu = document.querySelector(".menu") as HTMLDivElement;
 		menu.style.transform = "scale(0)";
 	});
@@ -152,5 +153,4 @@ export function boardEvents(chessBoard: ChessBoard) {
 		board.classList.remove("theme-0", "theme-1", "theme-2");
 		board.classList.add(`theme-${current}`);
 	});
-
 }
