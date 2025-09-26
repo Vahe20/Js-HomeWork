@@ -237,8 +237,8 @@ body {
 
 .header__menu-btn {
   position: fixed;
-  left: 10px;
-  top: 10px;
+  left: 1.25rem;
+  top: 1.25rem;
 }
 
 .wrap {
@@ -253,7 +253,7 @@ body {
   transform: scale(0);
   border: 2px solid #000;
   transition: var(--transition);
-  width: 70%;
+  width: 50%;
   height: 60%;
   display: flex;
   flex-direction: column;
@@ -263,13 +263,13 @@ body {
 }
 .wrap .menu__exit {
   position: absolute;
-  right: 20px;
+  right: 1.25rem;
 }
 .wrap .menu__winner {
   font-size: 2.5rem;
   color: #000;
 }
-.wrap .menu__restart {
+.wrap .menu__rotate .wrap .menu__restart {
   padding: 0.625rem 1.875rem;
   cursor: pointer;
 }
@@ -297,17 +297,10 @@ body {
 }
 .wrap .board_cell {
   border: 1px solid #000;
-  background-color: rgb(243, 200, 106);
   transition: var(--transition);
 }
-.wrap .board_cell:hover {
-  background-color: rgb(56, 55, 54);
-}
-.wrap .board .black_cell {
-  background-color: rgb(124, 87, 51);
-}
-.wrap .board .black_cell:hover {
-  background-color: rgb(56, 55, 54);
+.wrap .board_cell img {
+  filter: drop-shadow(0 0 1px black);
 }
 .wrap #available_cell {
   background-color: green;
@@ -322,12 +315,48 @@ body {
   background-color: yellow;
 }
 
+/* Тема 0 — классика */
+.board.theme-0 .board_cell {
+  background-color: rgb(243, 200, 106);
+}
+.board.theme-0 .board_cell:hover {
+  background-color: rgb(56, 55, 54);
+}
+
+.board.theme-0 .black_cell {
+  background-color: rgb(124, 87, 51);
+}
+
+/* Тема 1 — серая */
+.board.theme-1 .board_cell {
+  background-color: #e0e0e0;
+}
+.board.theme-1 .board_cell:hover {
+  background-color: rgb(70, 50, 30);
+}
+
+.board.theme-1 .black_cell {
+  background-color: #808080;
+}
+
+/* Тема 2 — зелёная */
+.board.theme-2 .board_cell {
+  background-color: #eeeed2;
+}
+.board.theme-2 .board_cell:hover {
+  background-color: rgb(77, 110, 74);
+}
+
+.board.theme-2 .black_cell {
+  background-color: #6c8b4d;
+}
+
 @media (width <= 63.99875rem) {
   .black {
     rotate: 180deg;
   }
   .promote img {
-    width: 70px;
+    width: 4.375rem;
   }
 }
 @media (width <= 47.99875rem) {
@@ -336,6 +365,6 @@ body {
     height: 25rem;
   }
   .wrap .promote img {
-    width: 50px;
+    width: 3.125rem;
   }
 }/*# sourceMappingURL=main.css.map */

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Chess</title>
 
     <link rel="icon" href="../assets/icon/logo.ico">
@@ -14,12 +14,16 @@
         <button class="header__menu-btn btn" id="menu_open">=</button>
     </div>
     <div class="wrap">
-        <div class="board"></div>
+        <div class="board theme-0"></div>
         <div class="menu">
             <button class="menu__exit btn" id="menu_exit">X</button>
             <p class="menu__winner" id="win"></p>
             <img id="menu_img" src="../assets/images/white_king.png" width="100px" alt="Белый король">
-            <button type="button" class="menu__restart btn" id="restart">Restart</button>
+            <div class="nav">
+                <button type="button" class="menu__restart btn" id="restart">Restart</button>
+                <button type="button" class="menu__rotate btn" id="rotate">Rotate</button>
+                <button type="button" class="menu__cheangeColor btn" id="changeColor">Change Color</button>
+            </div>
         </div>
         <div class="promote">
             <img id="promote_btn-queen" src="../assets/images/white_queen.png" width="100px" alt="Белая ферзь">

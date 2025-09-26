@@ -155,6 +155,7 @@ export function generateHtmlCells() {
 	}
 }
 
+
 export function isPawnPromotion(
 	chessBoard: ChessBoard,
 	row: number,

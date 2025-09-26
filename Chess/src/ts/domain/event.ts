@@ -128,4 +128,29 @@ export function boardEvents(chessBoard: ChessBoard) {
 		menu.style.transform = "scale(0)";
 		Render.renderBoard(chessBoard);
 	});
+
+	document.getElementById("rotate")?.addEventListener("click", () => {
+		const blackPieces = document.getElementsByClassName("black");
+
+		for (let i = 0; i < blackPieces.length; i++) {
+			const el = blackPieces[i] as HTMLElement;
+			el.style.transform =
+				el.style.transform === "rotate(180deg)"
+					? "rotate(0deg)"
+					: "rotate(180deg)";
+		}
+	});
+
+	document.getElementById("changeColor")?.addEventListener("click", () => {
+		const board = document.querySelector(".board") as HTMLElement | null;
+		if (!board) return;
+
+		let current = Number(board.dataset.colorVariant ?? "0");
+		current = (current + 1) % 3;
+		board.dataset.colorVariant = String(current);
+
+		board.classList.remove("theme-0", "theme-1", "theme-2");
+		board.classList.add(`theme-${current}`);
+	});
+
 }

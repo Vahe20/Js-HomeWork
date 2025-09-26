@@ -8,8 +8,8 @@
 
 .header__menu-btn {
     position: fixed;
-    left: 10px;
-    top: 10px;
+    left: rem(20);
+    top: rem(20);
 }
 
 .wrap {
@@ -24,7 +24,7 @@
         transform: scale(0);
         border: 2px solid #000;
         transition: var(--transition);
-        width: 70%;
+        width: 50%;
         height: 60%;
 
         display: flex;
@@ -35,7 +35,7 @@
 
         &__exit {
             position: absolute;
-            right: 20px;
+            right: rem(20);
         }
 
         &__winner {
@@ -43,7 +43,7 @@
             color: #000;
         }
 
-        &__restart {
+        &__rotate &__restart {
             padding: rem(10) rem(30);
             cursor: pointer;
         }
@@ -76,19 +76,10 @@
 
         &_cell {
             border: 1px solid #000;
-            background-color: rgb(243, 200, 106);
             transition: var(--transition);
 
-            &:hover {
-                background-color: rgb(56, 55, 54);
-            }
-        }
-
-        .black_cell {
-            background-color: rgb(124, 87, 51);
-
-            &:hover {
-                background-color: rgb(56, 55, 54);
+            & img {
+                filter: drop-shadow(0 0 1px black);
             }
         }
     }
@@ -111,6 +102,46 @@
 }
 
 
+/* Тема 0 — классика */
+.board.theme-0 .board_cell {
+    background-color: rgb(243, 200, 106);
+
+    &:hover {
+        background-color: rgb(56, 55, 54);
+    }
+}
+
+.board.theme-0 .black_cell {
+    background-color: rgb(124, 87, 51);
+}
+
+/* Тема 1 — серая */
+.board.theme-1 .board_cell {
+    background-color: #e0e0e0;
+
+    &:hover {
+        background-color: rgb(70, 50, 30);
+    }
+}
+
+.board.theme-1 .black_cell {
+    background-color: #808080;
+}
+
+/* Тема 2 — зелёная */
+.board.theme-2 .board_cell {
+    background-color: #eeeed2;
+
+    &:hover {
+        background-color: rgb(77, 110, 74);
+    }
+}
+
+.board.theme-2 .black_cell {
+    background-color: #6c8b4d;
+}
+
+
 @include tablet {
     .black {
         rotate: 180deg;
@@ -118,7 +149,7 @@
 
     .promote {
         & img {
-            width: 70px;
+            width: rem(70);
         }
     }
 }
@@ -132,7 +163,7 @@
 
         .promote {
             & img {
-                width: 50px;
+                width: rem(50);
             }
         }
     }

@@ -1,7 +1,7 @@
 import { Render } from "./render.js";
 import * as func from "./func.js";
 export function boardEvents(chessBoard) {
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e, _f;
     let selectedPiece = undefined;
     (_a = document.querySelector(".board")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", event => {
         var _a, _b, _c, _d;
@@ -78,6 +78,27 @@ export function boardEvents(chessBoard) {
         const menu = document.querySelector(".menu");
         menu.style.transform = "scale(0)";
         Render.renderBoard(chessBoard);
+    });
+    (_e = document.getElementById("rotate")) === null || _e === void 0 ? void 0 : _e.addEventListener("click", () => {
+        const blackPieces = document.getElementsByClassName("black");
+        for (let i = 0; i < blackPieces.length; i++) {
+            const el = blackPieces[i];
+            el.style.transform =
+                el.style.transform === "rotate(180deg)"
+                    ? "rotate(0deg)"
+                    : "rotate(180deg)";
+        }
+    });
+    (_f = document.getElementById("changeColor")) === null || _f === void 0 ? void 0 : _f.addEventListener("click", () => {
+        var _a;
+        const board = document.querySelector(".board");
+        if (!board)
+            return;
+        let current = Number((_a = board.dataset.colorVariant) !== null && _a !== void 0 ? _a : "0");
+        current = (current + 1) % 3;
+        board.dataset.colorVariant = String(current);
+        board.classList.remove("theme-0", "theme-1", "theme-2");
+        board.classList.add(`theme-${current}`);
     });
 }
 //# sourceMappingURL=event.js.map
